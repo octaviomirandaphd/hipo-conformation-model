@@ -1,0 +1,10 @@
+# Dimer tautomer equilibrium populations P(T) and the forward transition
+# matrix T_fwd[i,j] = P(T_{k+1}=j | T_k=i).  Allowed transitions:
+#   Ta,Tb -> Ta or Tc   |   Tc,Td -> Tb or Td
+# T_rev is derived from T_fwd and P(T) by Bayes at one step (see src/hipo/core.py).
+quantity,Ta,Tb,Tc,Td
+P_T,0.52946541,1.03943e-07,0.19059783,0.279936655
+T_fwd_from_Ta,0.73530404,0,0.26469596,0
+T_fwd_from_Tb,0.73530404,0,0.26469596,0
+T_fwd_from_Tc,0,3.71308e-07,0,0.999999629
+T_fwd_from_Td,0,3.71308e-07,0,0.999999629

@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+title: >-
+  HIPO conformation model — tautomer-encoded directional conformational
+  control in imidazopyridine oligomers
+message: >-
+  If you use this software, please cite both the software (this record) and
+  the accompanying paper listed under `references`.
+type: software
+authors:
+  - given-names: Octavio
+    family-names: Miranda
+    affiliation: Department of Chemistry, Texas A&M University
+    orcid: 'https://orcid.org/0000-0002-1478-1560'
+version: 1.0.0
+date-released: '2026-08-01'
+license: MIT
+abstract: >-
+  A probabilistic model of backbone conformation in regioregular
+  hydrogen-bonded imidazopyridine oligomers (HIPO). Each bridging bond is
+  treated as a dimer carrying a tautomeric state and a torsion angle;
+  because adjacent dimers share a monomer, tautomer compatibility between
+  overlapping dimers acts as a transition matrix. DFT-derived conditional
+  distributions P(phi|T) are propagated along the chain by Bayesian belief
+  propagation, giving pairwise and cumulative torsional joint distributions,
+  tautomer profiles, and cis/trans profiles at arbitrary chain length.
+keywords:
+  - conjugated polymers
+  - conformational analysis
+  - tautomerism
+  - belief propagation
+  - rotational isomeric state
+  - hydrogen bonding
+  - density functional theory
+# ---------------------------------------------------------------------------
+# TODO before the first release — see docs, GitHub/Zenodo guide:
+#   1. Uncomment `repository-code` and insert your GitHub URL.
+#   2. After Zenodo mints the DOI, uncomment `doi` and insert the CONCEPT DOI
+#      (the one that always resolves to the newest version), not the v1.0.0
+#      version DOI.
+#   3. Add the paper DOI under `references` on acceptance.
+# ---------------------------------------------------------------------------
+# repository-code: 'https://github.com/<username>/hipo-conformation-model'
+# doi: 10.5281/zenodo.XXXXXXX
+references:
+  - type: article
+    title: >-
+      Novel Imidazopyridine Oligomers with Manipulable Backbone Conformation
+      Evaluated Under a Probabilistic Bayesian Framework
+    authors:
+      - given-names: Octavio
+        family-names: Miranda
+        orcid: 'https://orcid.org/0000-0002-1478-1560'
+    year: 2026
+    # journal: ''
+    # doi: 10.xxxx/xxxxx
