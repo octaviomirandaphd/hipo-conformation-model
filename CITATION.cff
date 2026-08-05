@@ -31,16 +31,8 @@ keywords:
   - rotational isomeric state
   - hydrogen bonding
   - density functional theory
-# ---------------------------------------------------------------------------
-# TODO before the first release — see docs, GitHub/Zenodo guide:
-#   1. Uncomment `repository-code` and insert your GitHub URL.
-#   2. After Zenodo mints the DOI, uncomment `doi` and insert the CONCEPT DOI
-#      (the one that always resolves to the newest version), not the v1.0.0
-#      version DOI.
-#   3. Add the paper DOI under `references` on acceptance.
-# ---------------------------------------------------------------------------
-# repository-code: 'https://github.com/<username>/hipo-conformation-model'
-# doi: 10.5281/zenodo.XXXXXXX
+# repository-code: 'https://github.com/octaviomirandaphd/hipo-conformation-model'
+# doi:  10.5281/zenodo.21755704
 references:
   - type: article
     title: >-
