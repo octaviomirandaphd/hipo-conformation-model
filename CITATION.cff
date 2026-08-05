@@ -31,8 +31,8 @@ keywords:
   - rotational isomeric state
   - hydrogen bonding
   - density functional theory
-# repository-code: 'https://github.com/octaviomirandaphd/hipo-conformation-model'
-# doi:  10.5281/zenodo.21755704
+repository-code: 'https://github.com/octaviomirandaphd/hipo-conformation-model'
+doi: 10.5281/zenodo.21755592
 references:
   - type: article
     title: >-
