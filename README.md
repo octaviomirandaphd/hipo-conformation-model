@@ -36,7 +36,6 @@ src/hipo/
   core.py      the model — no plotting, no file writing
   plots.py     every figure, all drawn from core
 tests/         regression tests + addendum reconciliation
-docs/          conventions and the addendum audit
 figures/       output (git-ignored)
 ```
 
@@ -58,8 +57,6 @@ they drifted. One importable core makes that impossible.
 
 ## Conventions
 
-Read `docs/CONVENTIONS.md` before interpreting any figure. Two points matter most:
-
 1. **Chain direction.** The paper reads the chain from the T_d-rich end toward the T_a-rich
    end, which is the opposite of the internal head→tail propagation. `LABEL` in `core.py`
    declares this once and is used by both the console output and the figure titles. The
@@ -74,9 +71,7 @@ Float64 throughout (`jax_enable_x64`). Angles on a uniform 360-point grid over
 [−180°, +180°), dφ = 1°. Joint distributions normalised so Σ P·dφ² = 1. Integration is the
 periodic trapezoid rule, which on a uniform periodic grid coincides with the rectangle rule.
 
-`tests/test_addenda_part{1,2,3}.py` reproduce every published number from the methods
-addenda and physical-interpretation documents. `docs/ADDENDUM_CONSISTENCY.md` records
-which reproduce exactly and which do not.
+`tests/test_addenda_part{1,2,3}.py` reproduce every published number
 
 ## Citation
 
