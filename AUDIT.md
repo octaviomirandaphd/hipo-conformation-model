@@ -4,7 +4,6 @@ This file records how the model was audited, what the audit found, what was chan
 response, and what is still open. It is here so a referee does not have to take the code's
 own word for anything — including this file's.
 
-Audited version: v1.3. Fixes below are in **v1.4**.
 
 ---
 
