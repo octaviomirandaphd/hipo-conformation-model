@@ -12,7 +12,7 @@ authors:
     affiliation: Department of Chemistry, Texas A&M University
     orcid: 'https://orcid.org/0000-0002-1478-1560'
 version: 1.5.0
-date-released: '2026-08-06'
+date-released: '2026-08-10'
 license: MIT
 abstract: >-
   A probabilistic model of backbone conformation in regioregular
