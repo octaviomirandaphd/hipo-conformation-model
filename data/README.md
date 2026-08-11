@@ -38,5 +38,4 @@ uniform 1° grid over [−180°, +180°) with `period=360` and normalises so tha
   T_a, T_b → T_a or T_c; T_c, T_d → T_b or T_d.
 
 `T_rev` is **not** stored. It is derived in `core.py` from `T_fwd` and `P_T` by
-Bayes' theorem at a single step. See `docs/CONVENTIONS.md` for why that
-derivation is exact only for one step.
+Bayes' theorem at a single step. That derivation is exact only for a single step; see the README.

@@ -46,36 +46,42 @@ print("\n=== 8. JOINT ENTROPY S(phi_1,phi_N) (entropy_correction_addendum_v2) ==
 def ent2(J):
     J=np.asarray(J); J=J/(J.sum()*dφ**2); p=np.maximum(J,1e-300)
     return -float((p*np.log(p)).sum()*dφ**2)
-cl3={3:(9.7021,9.6748,9.7319),4:(9.6515,9.6429,9.7346),5:(9.5686,9.6100,9.7247),
-     6:(9.4801,9.5855,9.7121),10:(9.2092,9.5484,9.6755),15:(9.0650,9.5430,9.6605),
-     20:(9.0206,9.5426,9.6571)}
+# S_avg claims are the CORRECTED values (reverse joint transposed before
+# averaging).  The superseded values -- 9.7319 / 9.7346 / 9.7247 / 9.7121 /
+# 9.6755 / 9.6605 / 9.6571 -- came from 0.5*(jf+jr) with no transpose and are
+# retained here only so the difference is on the record.
+cl3={3:(9.7021,9.6748,9.7023),4:(9.6515,9.6429,9.6898),5:(9.5686,9.6100,9.6648),
+     6:(9.4801,9.5855,9.6405),10:(9.2092,9.5484,9.5825),15:(9.0650,9.5430,9.5617),
+     20:(9.0206,9.5426,9.5572)}
 print(f"  {'n':>4} {'S_fwd':>8} {'claim':>8} {'S_rev':>8} {'claim':>8} {'S_avg':>8} {'claim':>8}")
 for n in [3,4,5,6,10,15,20]:
     N=n-1
     Jf=np.asarray(H.pairwise_joint(m,0,N-1,"forward")); Jr=np.asarray(H.pairwise_joint(m,0,N-1,"reverse"))
-    Ja=0.5*(Jf+Jr); Ja/=Ja.sum()*dφ**2
+    Ja=np.asarray(H.orientation_averaged_joint(m,0,N-1))   # reverse term transposed
     print(f"  {n:>4} {ent2(Jf):>8.4f} {cl3[n][0]:>8.4f} {ent2(Jr):>8.4f} {cl3[n][1]:>8.4f} {ent2(Ja):>8.4f} {cl3[n][2]:>8.4f}")
 
 # (sections 9 and 10 removed: they compared Phi_rest against Phi_sum claims using a
 #  delta-seeded accumulator.  Superseded by section 11 below, which uses eq-26a seeding.
-#  See docs/ADDENDUM_CONSISTENCY.md B5.)
+#  See the review notes accompanying the manuscript.)
 
-print("\n=== 11. Phi_sum: eq-26a seeding (structural test) ===")
-Ff_=np.fft.fft(Pp,axis=1); M_=H.N_GRID
-def phisum_marg(n, T=Tf):
-    N=n-1; run=np.zeros((4,M_))
-    for t in range(4): run[t,:]=P_T[t]*Pp[t]     # eq 26a: first angle attached, no transition
-    for _ in range(N-1):
-        R=np.fft.fft(run,axis=1); R=np.einsum("ij,ik->jk",T,R)*Ff_
-        run=np.real(np.fft.ifft(R,axis=1))*dφ
-    s=np.maximum(run.sum(0),0); return s/(s.sum()*dφ)
-ref=P_T@Pp; ref/=ref.sum()*dφ
-d=np.abs(phisum_marg(2)-ref).max()
-print(f"   n=2 (N=1, zero transitions) must reduce to P(phi_1): max|diff| = {d:.2e}"
-      f"   {'PASS' if d<1e-12 else '**FAIL**'}")
-def _e(p): 
-    p=np.maximum(p,1e-300); return -float((p*np.log(p)).sum()*dφ)
-cl={3:5.226,4:5.45,5:5.575,10:5.81,15:5.865,20:5.875}
-print(f"   {'n':>4} {'S(Phi_sum)':>11} {'claim':>8}")
+print("\n=== 11. Phi_rest: transition count (structural test) ===")
+# Phi_sum was removed from the model: only Phi_rest, in which the anchor angle
+# is held on its own axis, appears in the manuscript.  The structural test that
+# pins the transition count is now the n=3 case, where Phi_rest contains a
+# single angle reached by a single transition and must therefore be identical
+# to the one-step marginal P(phi_2).
+J3=np.asarray(H.anchor_phirest_joint(m,3,"first","forward",True))
+r=J3.sum(0)*dφ; r/=r.sum()*dφ
+ref2=np.asarray(H.marginal(m,1,"forward"))
+d3=float(np.abs(r-ref2).max())
+print(f"   n=3 Phi_rest == P(phi_2): max|diff| = {d3:.2e}   "
+      f"{'PASS' if d3<1e-12 else '**FAIL**'}")
+
+def _e(p):
+    p=np.maximum(np.asarray(p),1e-300); return -float((p*np.log(p)).sum()*dφ)
+print(f"   {'n':>4} {'S(Phi_rest)':>12} {'P_cis':>8} {'P_trans':>8}")
+mt=np.asarray(H.MASK_TRANS); mc=np.asarray(H.MASK_CIS)
 for n in [3,4,5,10,15,20]:
-    print(f"   {n:>4} {_e(phisum_marg(n)):>11.3f} {cl[n]:>8.3f}")
+    J=np.asarray(H.anchor_phirest_joint(m,n,"first","forward",True))
+    q=J.sum(0)*dφ; q/=q.sum()*dφ
+    print(f"   {n:>4} {_e(q):>12.4f} {q[mc].sum()*dφ:>8.4f} {q[mt].sum()*dφ:>8.4f}")

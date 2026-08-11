@@ -11,8 +11,8 @@ authors:
     family-names: Miranda
     affiliation: Department of Chemistry, Texas A&M University
     orcid: 'https://orcid.org/0000-0002-1478-1560'
-version: 1.0.0
-date-released: '2026-08-01'
+version: 1.5.0
+date-released: '2026-08-06'
 license: MIT
 abstract: >-
   A probabilistic model of backbone conformation in regioregular
@@ -32,7 +32,10 @@ keywords:
   - hydrogen bonding
   - density functional theory
 repository-code: 'https://github.com/octaviomirandaphd/hipo-conformation-model'
+# Concept DOI — always resolves to the newest version. Cite this one in the paper.
+# (The v1.0.0 version DOI is 10.5281/zenodo.21755593; v1.1.0 will mint its own.)
 doi: 10.5281/zenodo.21755592
+# TODO: add the paper DOI and journal under `references` on acceptance.
 references:
   - type: article
     title: >-

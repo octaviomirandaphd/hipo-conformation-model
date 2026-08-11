@@ -3,7 +3,7 @@
 The four original analysis scripts, kept for provenance. **Do not use these to
 regenerate figures.** They are superseded by `src/hipo/`.
 
-Known issues, each documented in `docs/ADDENDUM_CONSISTENCY.md` and the code review:
+Known issues, each documented in the accompanying review notes:
 
 | Script | Issue |
 |---|---|
